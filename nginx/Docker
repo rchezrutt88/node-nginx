@@ -1,0 +1,14 @@
+FROM nginx:latest
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN \
+	apt-get update &&\
+	apt-get install software-properties-common &&\
+	add-apt-repository universe &&\
+	add-apt-repository ppa:certbot/certbot && \
+	apt-get update && \
+	apt-get install python-certbot-nginx && \
+	apt-get install -y nfs-common \
+
+CMD ["nginx"]
